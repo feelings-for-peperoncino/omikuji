@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おみくじ</title>
+  <style>
+    body {
+      background-color: rgb(154, 228, 130);
+      text-align: center;
+    }
+
+    p {
+      font-size: 2em;
+      margin-top: 100px;
+    }
+
+    .hiku {
+      width: 200px;
+      padding: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+
+    .active {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(240, 255, 164);
+    }
+
+    .kekka-back img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform:translate(-50%, -50%) scale(2) rotate(900deg);
+      opacity: 0;
+    }
+
+   
+
+    .kekka-back img.fuwa {
+      opacity: 1;
+      transform:translate(-50%, -50%) scale(1) rotate(0);
+      transition: 3s;
+    }
+
+    .reload {
+      display: none;
+      position: fixed;
+      bottom: 10%;
+      width: 200px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>今年の運勢を占いましょう<span id="kekka"></span></p>
+
+  <div style="margin: 100px 0;">
+    <img src="img/syougatsu2_omijikuji2.png" alt="" width="200px">
+  </div>
+
+  <button id="btn" class="hiku">
+    おみくじを引く
+  </button>
+
+  <div id="kekkaBack" class="kekka-back">
+    <img id="gazo" alt="">
+    <button id="reload" class="reload" onclick="window.location.reload();">
+      もう一回引く
+    </button>
+  </div>
+
+
+  <script>
+    // let kujis = ["大吉", "中吉", "吉", "小吉", "末吉", "凶", "大凶"];
+
+    let kujisGazo = ["daikichi", "kichi", "kyo"];
+
+
+
+
+    const gazo = document.getElementById("gazo");
+
+    document.getElementById("btn").addEventListener("click", function () {
+      document.getElementById("kekkaBack").classList.add("active");
+      let kuji = Math.floor(Math.random() * kujisGazo.length);
+      // document.getElementById("kekka").innerHTML = kujis[kuji]
+      gazo.src = "img/" + kujisGazo[kuji] + ".png";
+      gazo.classList.add("fuwa");
+      setTimeout(function () {
+        document.getElementById("reload").style.display = "block";
+      }, 5000);
+
+    });
+
+
+
+  </script>
+
+  <!-- <button id="btn">
+  ボタン
+</button> -->
+
+
+  <!-- <script>
+    let kujis = ["大吉", "中吉", "吉", "小吉", "末吉", "凶", "大凶"];
+    let kuji = Math.floor(Math.random() * 7);
+    alert("あなたの運勢は" + kujis[kuji] + "です");
+  </script> -->
+
+  <!-- <script>
+    let kujis = ["大吉", "中吉", "吉", "小吉", "末吉", "凶", "大凶"];
+    let kuji = Math.floor(Math.random() * 7);
+    console.log(kujis[1]);
+    document.write("<p>あなたの今年の運勢は、" + kujis[kuji] + "です</p>");
+  </script> -->
+
+  <!-- textContent -->
+
+</body>
+
+</html>
